@@ -1,0 +1,5 @@
+After realising that the offset was at 20 (quite standard) I had to understand what the issue was.
+First thing was that strcpy was trying to copy to a "non-writeable" memory address. Next was to decide where I want to write to. Obviously I want to write to the return address.
+To find this, I broke at "main" and then ran "info frame" command. The last lign "saved registers" had the return eip. I overwrote that with the address to "winner" and that was it :)
+
+heap1 $(python -c "print 'A'*20 + '\xbc\xf6\xff\xbf \x94\x84\x04\x08'")
