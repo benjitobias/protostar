@@ -1,0 +1,3 @@
+The vuln is in like 25, the malloc uses sizeof(auth) instead of sizeof(struct auth) so it allocates for a pointer (4) instead of the struct (36).
+
+Input "auth AAAA" which allocated the memory for auth pointer. Then I input "service AAAAAAAAAAAAAAAA" so that when I "login" it checks "auth" memory + 32 (auth variable in auth struct) which has been overwritten by service because 4 bytes were allocated earlier instaed of 36.
