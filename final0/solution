@@ -1,0 +1,14 @@
+Ok, so this one was fun and I learnt quite a bit.
+To start off with, I couldn't live debug and had to use core dumps.
+I had to load them as root (password was provided 'godmode') using 'gdb -c [core]'.
+
+So, first step is to pump the socket full of 'A's until it crashed and then I started adjusting it by adding 'B's to find eip. (Offset was at 532).
+I then had to find the buffer location. I used 2 commands:
+	(gdb) find $esp-600, $esp, "AAAA" #(for some reason " is different to ' and is important)
+	and
+	(gdb) x/100s $esp-600
+and looked for the beginning (I also added 'DDDD' to the beginning to help)
+
+Now I had the offsets I could load it with shellcode, I found some online (need to start writing my own).
+Shellcode had to be all uppercase because of toupper().
+Sent it and then connected with netcat to port 5074. Shell :D
